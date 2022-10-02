@@ -12,7 +12,7 @@
     "@rainbow-me/rainbowkit": "^0.7.0",
     "ethers": "^5.7.1",
     "jwt-decode": "^3.1.2",
-    "next": "12.3.1",
+    "next": "^12.3.1",
     "next-auth": "^4.12.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
