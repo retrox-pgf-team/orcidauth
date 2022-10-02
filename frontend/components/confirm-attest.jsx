@@ -4,6 +4,11 @@ export default function RequestCredential({orcid, address}) {
   console.log(address);
 
   async function handleIssuance() {
+
+    if (!orcid || !address) {
+      return;
+    }
+
     const req = await fetch('/api/issue', {
       method: "POST",
       headers: {
@@ -13,6 +18,7 @@ export default function RequestCredential({orcid, address}) {
     })
 
     const res = await req.json()
+
   }
 
   return (
