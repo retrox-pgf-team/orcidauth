@@ -8,9 +8,16 @@ contract Orcid {
 
   event AddOrcid(address indexed _address, string indexed _orcid);
 
+  address _owner;
+
+  constructor() {
+    _owner = msg.sender;
+  }
+
   function issue(address _address, string calldata _orcid) external {
 
     // reject transactions that aren't from approved party
+    require(msg.sender == _owner, "only owner can update orcids");
 
     // operate on data
     addressToOrcid[_address] = _orcid;
