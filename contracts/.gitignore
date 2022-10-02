@@ -96,3 +96,5 @@ typings/
 
 
 docs/.env.example
+
+.env
