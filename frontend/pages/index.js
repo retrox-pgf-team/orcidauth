@@ -6,8 +6,7 @@ import RequestCredential from '../components/confirm-attest';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
 
-
-export default function Home() {
+export default function Home({ orcid_url }) {
 
   const [orcid, setOrcid] = useState('');
   const { address } = useAccount();
@@ -31,10 +30,18 @@ export default function Home() {
 
   return (
     <div>
-      <OrcidLogin />
+      <OrcidLogin url={orcid_url} />
       {orcid && <p>{orcid}</p> || <p>Not signed in</p>}
       <RequestCredential orcid={orcid} address={address} />
       <ConnectButton />
     </div>
   )
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      orcid_url: process.env.ORCID_URL,
+    }
+  }
 }
