@@ -10,6 +10,11 @@ const orcidWithSigner = orcidContract.connect(signer);
 async function Issue(req, res) {
 
   // check for erroneous request format
+  if (req.method !== 'POST') {
+    return res.status(500).send({ error: "wrong request method" });
+  }
+
+  console.log("pass method")
 
   // extract content from request
   const body = req.body;
@@ -18,15 +23,15 @@ async function Issue(req, res) {
   // check for correct data in address and orcid
 
   // operate on address and orcid
-  console.log(`address: ${ address }`);
-  console.log(`orcid: ${ orcid }`);
+  console.log(`address: ${address}`);
+  console.log(`orcid: ${orcid}`);
 
   const tx = await orcidWithSigner.issue(address, orcid);
-  console.log(tx)
+  console.log(tx);
 
   // respond with status
-  res.send({
-    message: "All good"
+  res.status(200).send({
+    message: "Transaction success"
   });
 }
 
