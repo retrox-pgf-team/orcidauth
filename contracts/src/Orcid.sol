@@ -6,7 +6,7 @@ contract Orcid {
   mapping(address => string) public addressToOrcid;
   mapping(string => address) public orcidToAddress;
 
-  event AddOrcid(address indexed _address, string indexed _orcid);
+  event AddOrcid(address _address, string _orcid);
 
   address _owner;
 

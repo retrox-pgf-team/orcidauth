@@ -98,3 +98,7 @@ typings/
 docs/.env.example
 
 .env
+
+# Hardhat files
+artifacts/
+cache/
