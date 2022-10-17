@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import OrcidLogin from '../components/implicit-oauth'
-import Component from '../components/login-btn'
 import jwt_decode from 'jwt-decode';
 import RequestCredential from '../components/confirm-attest';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount } from 'wagmi';
+import { useAccount, useSignMessage } from 'wagmi';
 import { Stepper } from '../components/stepper';
 
 export default function Home({ orcid_url }) {
@@ -29,6 +28,7 @@ export default function Home({ orcid_url }) {
     setOrcid(decoded.sub)
 
   }, [])
+
 
   const stepArray = [
     {

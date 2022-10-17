@@ -18,13 +18,19 @@ async function Issue(req, res) {
 
   // extract content from request
   const body = req.body;
-  const { address, orcid } = body;
+  const { address, orcid, signature } = body;
 
   // check for correct data in address and orcid
 
   // operate on address and orcid
   console.log(`address: ${address}`);
   console.log(`orcid: ${orcid}`);
+  console.log(`signature: ${signature}`)
+
+  const signed_address = ethers.utils.verifyMessage(orcid, signature);
+  if (signed_address !== address) {
+    return res.status(500).send({ error: "signature does not match wallet address" });
+  }
 
   const tx = await orcidWithSigner.issue(address, orcid);
   console.log(tx);

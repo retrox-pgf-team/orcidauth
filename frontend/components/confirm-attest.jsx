@@ -1,18 +1,24 @@
 import { useState } from "react";
+import { useSignMessage } from "wagmi";
 
-export default function RequestCredential({orcid, address}) {
+export default function RequestCredential({ orcid, address }) {
 
   console.log(orcid);
   console.log(address);
 
   const [disabled, setDisabled] = useState(false);
   const [success, setSuccess] = useState(false);
+  const { signMessageAsync } = useSignMessage({
+    message: orcid,
+  })
 
   async function handleIssuance() {
 
     if (!orcid || !address) {
       return;
     }
+
+    const signature = await signMessageAsync();
 
     setDisabled(true);
 
@@ -21,7 +27,7 @@ export default function RequestCredential({orcid, address}) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({orcid, address})
+      body: JSON.stringify({ orcid, address, signature })
     })
 
     const res = await req.json();
@@ -31,15 +37,14 @@ export default function RequestCredential({orcid, address}) {
       setSuccess(true);
     }
 
-
   }
 
   return (
     <div>
       <button onClick={handleIssuance} disabled={disabled} class="bg-green-500 hover:bg-green-700 active:bg-green-500 text-white font-bold py-2 px-4 rounded">
         Issue Credential!
-        </button>
-      { success && <p>Success!</p> }
+      </button>
+      {success && <p>Success!</p>}
     </div>
   )
 }
