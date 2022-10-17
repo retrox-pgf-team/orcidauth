@@ -6,9 +6,9 @@ export function Stepper({ stepArray, completedMessage, currentStep, setCurrentSt
 	return (
 		<>
 			<div className="flex justify-center">
-				<ol className="relative mx-4">
+				<ol className="relative mx-4 py-6 px-6 border-4 border-black rounded-3xl">
 					{stepArray.map((el, index) => (
-						<li className="mb-10 flex flex-col md:flex-row items-start" key={index}>
+						<li className="mb-10 last:mb-0 flex flex-col md:flex-row items-start" key={index}>
 							<div className={`mx-auto rounded-full transition duration-500 ease-in-out border-2 border-gray-700 dark:border-gray-300 h-12 w-12 flex items-center justify-center py-3 text-xl font-bold ${index <= currentStep ? "bg-black text-white dark:bg-white dark:text-black" : ""} ${index <= currentStep && el.canGoBackTo ? "hover:scale-105 duration-200 hover:cursor-pointer" : ""}`} onClick={index <= currentStep && el.canGoBackTo ? () => setCurrentStep(index) : null}>
 								{index >= currentStep ? index + 1 : <BsCheckLg/>}
 							</div>

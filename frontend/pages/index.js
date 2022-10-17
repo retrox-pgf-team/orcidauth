@@ -65,7 +65,7 @@ export default function Home({ orcid_url }) {
       canGoBackTo: true,
     },
     {
-      title: "Isuue your credential",
+      title: "Issue your credential",
       content: (
         <div className="flex flex-col justify-center">
           <h4 className="text-black dark:text-white text-lg text-center">
@@ -88,6 +88,19 @@ export default function Home({ orcid_url }) {
       {orcid && <p>{orcid}</p> || <p>Not signed in</p>}
       <RequestCredential orcid={orcid} address={address} />
       <ConnectButton />*/}
+      <div className='m-24'></div>
+      <div>
+        <h2 className='text-center text-7xl font-bold'>
+          Retrox
+        </h2>
+      </div>
+      <div className='m-6'></div>
+      <div>
+        <h4 className='text-center text-2xl font-bold'>
+          Associate your academic credentials with a wallet address
+        </h4>
+      </div>
+      <div className='m-12'></div>
       <Stepper
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}

@@ -36,7 +36,9 @@ export default function RequestCredential({orcid, address}) {
 
   return (
     <div>
-      <button onClick={handleIssuance} disabled={disabled}>Issue Credential</button>
+      <button onClick={handleIssuance} disabled={disabled} class="bg-green-500 hover:bg-green-700 active:bg-green-500 text-white font-bold py-2 px-4 rounded">
+        Issue Credential!
+        </button>
       { success && <p>Success!</p> }
     </div>
   )
