@@ -29,12 +29,6 @@ async function Issue(req, res) {
   const tx = await orcidWithSigner.issue(address, orcid);
   console.log(tx);
 
-  const signed_address = utils.verifyMessage(orcid, signature)
-
-  if(signed_address !== address){
-    return res.status(500).send({error:"signature does not match wallet address"})
-  }
-
   // respond with status
   res.status(200).send({
     message: "Transaction success"
