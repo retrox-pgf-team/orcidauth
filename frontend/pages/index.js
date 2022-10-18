@@ -51,9 +51,9 @@ export default function Home({ orcid_url }) {
     {
       title: "Connect your wallet",
       content: (
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center border-4 border-sky-400">
           <h4 className="text-black dark:text-white text-lg text-center">
-            This will let us access your ethereum address.
+            Connect your wallet to associate your ORCID credentials to your wallet. This will let us access your ethereum address.
           </h4>
           <div className="mx-auto my-2">
             <ConnectButton />
