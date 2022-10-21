@@ -1,10 +1,9 @@
 import { ethers } from 'ethers';
 import getOrcidInfo from '../../utils/getOrcidInfo';
 
-
 const { orcidWithSigner } = getOrcidInfo();
 
-async function Issue(req, res) {
+async function Clear(req, res) {
 
   // check for erroneous request format
   if (req.method !== 'POST') {
@@ -15,27 +14,24 @@ async function Issue(req, res) {
 
   // extract content from request
   const body = req.body;
-  const { address, orcid, signature } = body;
+  const { address, signature } = body;
 
-  // check for correct data in address and orcid
-
-  // operate on address and orcid
+  // operate on address
   console.log(`address: ${address}`);
-  console.log(`orcid: ${orcid}`);
   console.log(`signature: ${signature}`)
 
-  const signed_address = ethers.utils.verifyMessage(orcid, signature);
+  const signed_address = ethers.utils.verifyMessage(address, signature);
   if (signed_address !== address) {
     return res.status(500).send({ error: "signature does not match wallet address" });
   }
 
-  const tx = await orcidWithSigner.issue(address, orcid);
+  const tx = await orcidWithSigner.clear(address);
   console.log(tx);
 
-  // respond with status
+  // Success
   res.status(200).send({
     message: "Transaction success"
   });
 }
 
-export default Issue;
+export default Clear;
