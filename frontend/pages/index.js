@@ -12,6 +12,7 @@ export default function Home({ orcid_url }) {
   const [orcidJWT, setOrcidJWT] = useState('');
   const { address } = useAccount();
   const [currentStep, setCurrentStep] = useState(0);
+  const [completedStep, setCompletedStep] = useState(0);
 
   useEffect(() => {
     const hash = window && window.location.hash || null;
@@ -37,12 +38,23 @@ export default function Home({ orcid_url }) {
       title: "Sign in with ORCID",
       content: (
         <div className="flex flex-col justify-center">
-          <h4 className="text-black dark:text-white text-lg text-center">
-            This will let us find your ORCID ID
-          </h4>
           <div className="mx-auto my-2">
-            <OrcidLogin url={orcid_url} />
-            {orcid && <p>{orcid}</p> || <p>Not signed in</p>}
+            {!orcid ? 
+            <>
+              <h4 className="text-black text-xl text-center">
+                This will let us find your ORCID ID
+              </h4>
+              <div className="flex justify-center my-2">
+                <OrcidLogin url={orcid_url} />
+              </div>
+              <p className="text-center mt-1">Not signed in</p>
+            </>:
+            <>
+              <h4 className="text-black text-xl text-center">
+                You have connected with the ORCID ID:
+              </h4>
+              <h4 className="text-center my-2 text-lg">{orcid}</h4>
+            </>}
           </div>
         </div>
       ),
@@ -54,11 +66,13 @@ export default function Home({ orcid_url }) {
       title: "Connect your wallet",
       content: (
         <div className="flex flex-col justify-center">
-          <h4 className="text-black dark:text-white text-lg text-center">
+          <h4 className="text-black text-xl text-center">
             This will let us access your ethereum address.
           </h4>
-          <div className="mx-auto my-2">
-            <ConnectButton />
+          <div className="mx-auto my-2 mb-4">
+            { address ?
+            <h4 className="text-center text-lg">{address.slice(0, 5) + "..." + address.slice(-4)}</h4> :
+            <ConnectButton />}
           </div>
         </div>
       ),
@@ -70,11 +84,16 @@ export default function Home({ orcid_url }) {
       title: "Issue your credential",
       content: (
         <div className="flex flex-col justify-center">
-          <h4 className="text-black dark:text-white text-lg text-center">
+          <h4 className="text-black text-xl text-center">
             This will issue a credential holding your ORCID ID to your wallet.
           </h4>
+<<<<<<< Updated upstream
           <div className="mx-auto my-2">
             <RequestCredential address={address} orcidJWT={orcidJWT} />
+=======
+          <div className="mx-auto my-2 mb-4">
+            <RequestCredential orcid={orcid} address={address} />
+>>>>>>> Stashed changes
           </div>
         </div>
       ),
@@ -106,9 +125,10 @@ export default function Home({ orcid_url }) {
       <Stepper
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}
+        completedStep={completedStep}
         stepArray={stepArray}
         completedMessage={
-          <div className="text-black dark:text-white p-6">
+          <div className="text-black p-6">
             <div className="text-center text-3xl font-bold">Done!</div>
             <h4 className="text-lg text-center mt-2">
               Thank you for linking your ORCID ID to your wallet. We would love to hear your feedback so that we can improve.

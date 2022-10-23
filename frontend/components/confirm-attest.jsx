@@ -52,7 +52,7 @@ export default function RequestCredential({ address, orcidJWT }) {
 
   return (
     <div>
-      <button onClick={handleIssuance} disabled={disabled} class="bg-green-500 hover:bg-green-700 active:bg-green-500 text-white font-bold py-2 px-4 rounded">
+      <button onClick={handleIssuance} disabled={disabled} class="bg-green-500 text-white font-bold py-2 px-4  rounded-2xl shadow-md hover:scale-105 duration-200">
         Issue Credential!
       </button>
       {success && <p>Success!</p>}
