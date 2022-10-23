@@ -1,4 +1,5 @@
 import { ethers } from 'ethers';
+import jwt_decode from 'jwt-decode';
 import getOrcidInfo from '../../utils/getOrcidInfo';
 
 
@@ -19,14 +20,18 @@ async function Issue(req, res) {
 
     // extract content from request
     const body = req.body;
-    const { address, orcid, signature } = body;
+    const { address, orcidJWT, signature } = body;
+    const orcidDec = jwt_decode(orcidJWT);
+    const orcid = orcidDec.sub;
 
     // check for correct data in address and orcid
 
     // operate on address and orcid
     console.log(`address: ${address}`);
+    console.log(`orcid JWT: ${orcidJWT}`);
+    console.log(`JWT decoded: ${JSON.stringify(orcidDec, null, 2)}`);
     console.log(`orcid: ${orcid}`);
-    console.log(`signature: ${signature}`)
+    console.log(`signature: ${signature}`);
 
     const signed_address = ethers.utils.verifyMessage(orcid, signature);
     if (signed_address !== address) {

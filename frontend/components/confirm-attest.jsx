@@ -1,24 +1,35 @@
+import jwtDecode from "jwt-decode";
 import { useState } from "react";
 import { useSignMessage } from "wagmi";
 
-export default function RequestCredential({ orcid, address }) {
+export default function RequestCredential({ address, orcidJWT }) {
 
-  console.log(orcid);
   console.log(address);
+  console.log(orcidJWT);
+
+  let orcid;
+  try {
+    orcid = jwtDecode(orcidJWT).sub;
+  } catch (error) { // if component is loaded without JWT
+    orcid = '';
+  }
 
   const [disabled, setDisabled] = useState(false);
   const [success, setSuccess] = useState(false);
-  const { signMessageAsync } = useSignMessage({
-    message: orcid,
-  })
+  const [message, setMessage] = useState(orcid);
+  const { signMessageAsync } = useSignMessage({ message })
 
   async function handleIssuance() {
 
-    if (!orcid || !address) {
+    if (!orcidJWT || !address) {
       return;
     }
 
-    const signature = await signMessageAsync();
+    try {
+      var signature = await signMessageAsync();
+    } catch (error) { // handle signature cancellation gracefully
+      return error;
+    }
 
     setDisabled(true);
 
@@ -27,7 +38,7 @@ export default function RequestCredential({ orcid, address }) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ orcid, address, signature })
+      body: JSON.stringify({ orcidJWT, address, signature })
     })
 
     const res = await req.json();

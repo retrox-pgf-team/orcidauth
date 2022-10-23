@@ -9,6 +9,7 @@ import { Stepper } from '../components/stepper';
 export default function Home({ orcid_url }) {
 
   const [orcid, setOrcid] = useState('');
+  const [orcidJWT, setOrcidJWT] = useState('');
   const { address } = useAccount();
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -23,9 +24,10 @@ export default function Home({ orcid_url }) {
       return;
     }
 
-    const id_token = parsedHash.get('id_token')
-    const decoded = jwt_decode(id_token)
-    setOrcid(decoded.sub)
+    const id_token = parsedHash.get('id_token');
+    const decoded = jwt_decode(id_token);
+    setOrcid(decoded.sub);
+    setOrcidJWT(id_token);
 
   }, [])
 
@@ -72,7 +74,7 @@ export default function Home({ orcid_url }) {
             This will issue a credential holding your ORCID ID to your wallet.
           </h4>
           <div className="mx-auto my-2">
-            <RequestCredential orcid={orcid} address={address} />
+            <RequestCredential address={address} orcidJWT={orcidJWT} />
           </div>
         </div>
       ),
