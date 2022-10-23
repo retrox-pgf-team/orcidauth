@@ -5,17 +5,17 @@ function Index({ issues }) {
     <>
       <h1 className="flex justify-center text-5xl p-8">Issuances</h1>
       <div className="flex flex-col justify-center">
-        {issues.reverse().map((item) => (
+        {Object.values(issues).reverse().map((item) => (
           <div className="flex justify-center">
             <div className="flex flex-row justify-left">
               <div className="p-2 hover:underline">
-                <a href={`https://mumbai.polygonscan.com/tx/${item[1]}`} target="_blank">{item[0]}</a>
+                <a href={`https://mumbai.polygonscan.com/tx/${item.txn}`} target="_blank">View Transaction</a>
               </div>
               <div className="p-2 hover:underline">
-                <a href={`https://orcid.org/${item[3]}`} target="_blank">{item[3]}</a>
+                <a href={`https://orcid.org/${item.orcid}`} target="_blank">{item.orcid}</a>
               </div>
               <div className="p-2 hover:underline">
-                <a href={`https://etherscan.io/address/${item[2]}`} target="_blank">{item[2]}</a>
+                <a href={`https://etherscan.io/address/${item.address}`} target="_blank">{item.address}</a>
               </div>
             </div>
           </div>
@@ -27,13 +27,23 @@ function Index({ issues }) {
 
 export default Index;
 
+
 export async function getServerSideProps() {
 
   const { issues } = await GetIssuances();
 
+  const issuesMap = new Map();
+
+  issues.forEach((issue) => {
+    issuesMap.set(issue[3], { address: issue[2], txn: issue[1], orcid: issue[3] })
+  })
+
+  const issuesObj = Object.fromEntries(issuesMap);
+  console.log(issuesObj);
+
   return {
     props: {
-      issues,
+      issues: issuesObj,
     }
   }
 }
