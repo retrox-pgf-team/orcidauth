@@ -87,13 +87,8 @@ export default function Home({ orcid_url }) {
           <h4 className="text-black text-xl text-center">
             This will issue a credential holding your ORCID ID to your wallet.
           </h4>
-<<<<<<< Updated upstream
           <div className="mx-auto my-2">
             <RequestCredential address={address} orcidJWT={orcidJWT} />
-=======
-          <div className="mx-auto my-2 mb-4">
-            <RequestCredential orcid={orcid} address={address} />
->>>>>>> Stashed changes
           </div>
         </div>
       ),
