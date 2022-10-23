@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import { useState } from "react";
 import { useSignMessage } from "wagmi";
 
-export default function RequestCredential({ address, orcidJWT }) {
+export default function RequestCredential({ address, orcidJWT, setCompletedStep }) {
 
   console.log(address);
   console.log(orcidJWT);
@@ -46,6 +46,7 @@ export default function RequestCredential({ address, orcidJWT }) {
     console.log(`status: ${req.status}`)
     if (req.status === 200) {
       setSuccess(true);
+      setCompletedStep(3);
     }
 
   }

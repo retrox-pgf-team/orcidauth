@@ -8,7 +8,7 @@ export default function Home() {
       <section className="mt-20">
         <div>
           <h2 className='text-center text-4xl font-bold'>
-            Retrox
+            Profile
           </h2>
         </div>
         <div>

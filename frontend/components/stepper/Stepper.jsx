@@ -24,10 +24,10 @@ export function Stepper({ stepArray, completedMessage, currentStep, setCurrentSt
 											onClick={() => setCurrentStep(currentStep - 1)}>
 											<MdKeyboardArrowLeft size={30}/><span className="ml-1 mr-2">Back</span>
 										</button>:null}
-										{((el.showNext && currentStep != stepArray.length - 1) || (currentStep == stepArray.length - 1 && currentStep == completedStep)) ?
+										{((el.showNext && currentStep != stepArray.length -1 ) || (completedStep == stepArray.length)) ?
 										<button className="bg-black text-white text-lg px-2 py-1 rounded-2xl mx-2 hover:scale-105 duration-200 flex flex-row items-center"
 											onClick={() => setCurrentStep(currentStep + 1)}>
-											<span className="ml-2 mr-1">{completedStep == currentStep && currentStep === stepArray.length - 1 ? "Complete" : "Next"}</span><MdKeyboardArrowRight size={30}/>
+											<span className="ml-2 mr-1">{completedStep == stepArray.length ? "Complete" : "Next"}</span><MdKeyboardArrowRight size={30}/>
 										</button>:null}
 									</div>
 									</>
