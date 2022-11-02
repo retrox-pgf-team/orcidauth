@@ -47,15 +47,15 @@ export default function Home({ orcid_url }) {
           <div className="mx-auto my-2">
             {!orcid ? 
             <>
-              <h4 className="text-black text-xl text-center">
-                This will let us find your ORCID ID
+              <h4 className="text-black text-2xl text-center">
+                This will prompt you to sign in to your ORCID account
               </h4>
               <div className="flex justify-center my-2">
                 <OrcidLogin url={orcid_url} />
               </div>
             </>:
             <>
-              <h4 className="text-black text-xl text-center">
+              <h4 className="text-black text-2xl text-center">
                 You have connected with the ORCID ID:
               </h4>
               <h4 className="text-center my-2 text-lg">{orcid}</h4>
@@ -71,8 +71,8 @@ export default function Home({ orcid_url }) {
       title: "Connect your wallet",
       content: (
         <div className="flex flex-col justify-center">
-          <h4 className="text-black text-xl text-center">
-            This will let us access your ethereum address.
+          <h4 className="text-black text-2xl text-center">
+            Connect your wallet to allow us to access your public wallet address
           </h4>
           <div className="mx-auto my-2 mb-4">
             { address ?
@@ -89,7 +89,7 @@ export default function Home({ orcid_url }) {
       title: "Issue your credential",
       content: (
         <div className="flex flex-col justify-center">
-          <h4 className="text-black text-xl text-center">
+          <h4 className="text-black text-2xl text-center">
             This will issue a credential holding your ORCID ID to your wallet.
           </h4>
           <div className="mx-auto my-2 mb-4">
