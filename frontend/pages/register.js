@@ -76,7 +76,7 @@ export default function Home({ orcid_url }) {
           </h4>
           <div className="mx-auto my-2 mb-4">
             { address ?
-            <h4 className="text-center text-xl">{address}</h4> : // {address.slice(0, 5) + "..." + address.slice(-4)}
+            <h4 className="text-center text-4xl font-semibold">{address.slice(0, 6) + "..." + address.slice(-6)}</h4> :
             <ConnectButton />}
           </div>
         </div>
