@@ -49,10 +49,15 @@ export default function Home({ contractAddress }) {
             Associate your academic credentials with a wallet address
           </h4>
           <h2 className='text-center text-2xl mt-4'>
-            {orcid ||
-              <div>
+            {(orcid) ? (
+              <div className='hover:underline'>
+                <Link href={`https://orcid.org/${orcid}`} target="_blank">{orcid}</Link>
+              </div>
+            ) : (
+              <div className='hover:underline'>
                 <Link href={"/register"}>Register your ORCID</Link>
               </div>
+            )
             }
           </h2>
         </div>
