@@ -147,7 +147,7 @@ export async function getStaticProps() {
   let orcid_url;
 
   if ("NEXT_PUBLIC_VERCEL_URL" in process.env) {
-    orcid_url = process.env.ORCID_URL_STUB + "https://" + process.env.NEXT_PUBLIC_VERCEL_URL
+    orcid_url = process.env.ORCID_URL_STUB + "https://" + process.env.NEXT_PUBLIC_VERCEL_URL + "/register"
   } else {
     orcid_url = process.env.ORCID_URL
   }
