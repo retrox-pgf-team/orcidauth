@@ -1,11 +1,9 @@
 import { ethers } from 'ethers';
-import jwt_decode from 'jwt-decode';
 import getOrcidInfo from '../../utils/getOrcidInfo';
-
 
 const { orcidWithSigner } = getOrcidInfo();
 
-async function Issue(req, res) {
+async function Clear(req, res) {
 
   let errorMsg = "error processing request";
 
@@ -20,28 +18,21 @@ async function Issue(req, res) {
 
     // extract content from request
     const body = req.body;
-    const { address, orcidJWT, signature } = body;
-    const orcidDec = jwt_decode(orcidJWT);
-    const orcid = orcidDec.sub;
+    const { address, signature } = body;
 
-    // check for correct data in address and orcid
-
-    // operate on address and orcid
+    // operate on address
     console.log(`address: ${address}`);
-    console.log(`orcid JWT: ${orcidJWT}`);
-    console.log(`JWT decoded: ${JSON.stringify(orcidDec, null, 2)}`);
-    console.log(`orcid: ${orcid}`);
-    console.log(`signature: ${signature}`);
+    console.log(`signature: ${signature}`)
 
-    const signed_address = ethers.utils.verifyMessage(orcid, signature);
+    const signed_address = ethers.utils.verifyMessage(address, signature);
     if (signed_address !== address) {
       return res.status(500).send({ error: "signature does not match wallet address" });
     }
 
-    const tx = await orcidWithSigner.issue(address, orcid);
+    const tx = await orcidWithSigner.clear(address);
     console.log(tx);
 
-    // respond with status
+    // Success
     res.status(200).send({
       message: "Transaction success"
     });
@@ -51,4 +42,4 @@ async function Issue(req, res) {
   }
 }
 
-export default Issue;
+export default Clear;

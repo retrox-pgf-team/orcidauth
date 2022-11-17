@@ -6,7 +6,8 @@ contract Orcid {
   mapping(address => string) public addressToOrcid;
   mapping(string => address) public orcidToAddress;
 
-  event AddOrcid(address indexed _address, string indexed _orcid);
+  event AddOrcid(address _address, string _orcid);
+  event DeleteOrcid(address _address);
 
   address _owner;
 
@@ -25,6 +26,20 @@ contract Orcid {
 
     // Notify off-chain infrastructure
     emit AddOrcid(_address, _orcid);
+
+  }
+
+  function clear(address _address) external {
+
+    // reject transactions that aren't approved
+    require(msg.sender == _owner || msg.sender == _address, "only authorized parties can delete orcids");
+     
+    string memory orcid = addressToOrcid[_address];
+    orcidToAddress[orcid] = address(0);
+    addressToOrcid[_address] = "";
+
+    // Notify off-chain infrastructure
+    emit DeleteOrcid(_address);
 
   }
 

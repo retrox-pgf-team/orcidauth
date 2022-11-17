@@ -1,47 +1,22 @@
-import { useEffect, useState } from 'react'
-import OrcidLogin from '../components/implicit-oauth'
-import Component from '../components/login-btn'
-import jwt_decode from 'jwt-decode';
-import RequestCredential from '../components/confirm-attest';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { useAccount } from 'wagmi';
+import { Navbar } from '../components/layout';
 
-export default function Home({ orcid_url }) {
-
-  const [orcid, setOrcid] = useState('');
-  const { address } = useAccount();
-
-  useEffect(() => {
-    const hash = window && window.location.hash || null;
-    if (!hash) {
-      return;
-    }
-
-    const parsedHash = new URLSearchParams(hash.substring(1))
-    if (parsedHash.get('error')) {
-      return;
-    }
-
-    const id_token = parsedHash.get('id_token')
-    const decoded = jwt_decode(id_token)
-    setOrcid(decoded.sub)
-
-  }, [])
+export default function Home() {
 
   return (
-    <div>
-      <OrcidLogin url={orcid_url} />
-      {orcid && <p>{orcid}</p> || <p>Not signed in</p>}
-      <RequestCredential orcid={orcid} address={address} />
-      <ConnectButton />
-    </div>
+    <>
+      <Navbar></Navbar>
+      <section className="mt-20">
+        <div>
+          <h2 className='text-center text-4xl font-bold'>
+            Retrox
+          </h2>
+        </div>
+        <div>
+          <h4 className='text-center text-2xl mt-4'>
+            Associate your academic credentials with a wallet address
+          </h4>
+        </div>
+      </section>
+    </>
   )
-}
-
-export async function getStaticProps() {
-  return {
-    props: {
-      orcid_url: process.env.ORCID_URL,
-    }
-  }
 }
