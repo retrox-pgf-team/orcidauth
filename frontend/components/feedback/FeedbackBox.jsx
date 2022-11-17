@@ -17,7 +17,7 @@ export function FeedbackBox() {
   
     return (
       <form className="flex flex-col my-8 mx-auto max-w-[40vw] justify-center" onSubmit={(event) => handleSubmit(event)}>
-        <label for="message" className="block mb-4 text text-2xl text-gray-900 text-left font-semibold whitespace-nowrap">Any feedback?</label>
+        <label htmlFor="message" className="block mb-4 text text-2xl text-gray-900 text-left font-semibold whitespace-nowrap">Any feedback?</label>
         {feedback ?
         <h5 className="text-xl">
           Thank you for your feedback!

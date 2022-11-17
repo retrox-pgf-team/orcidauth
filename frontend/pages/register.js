@@ -143,9 +143,18 @@ export default function Home({ orcid_url }) {
 }
 
 export async function getStaticProps() {
+
+  let orcid_url;
+
+  if ("NEXT_PUBLIC_VERCEL_URL" in process.env) {
+    orcid_url = process.env.ORCID_URL_STUB + process.env.NEXT_PUBLIC_VERCEL_URL
+  } else {
+    orcid_url = process.env.ORCID_URL
+  }
+
   return {
     props: {
-      orcid_url: process.env.ORCID_URL,
+      orcid_url
     }
   }
 }
