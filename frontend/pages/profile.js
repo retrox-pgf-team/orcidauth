@@ -41,11 +41,6 @@ export default function Home({ contractAddress }) {
 
   }, [])
 
-  var arxiv_authorid='0000-0001-5137-828X';
-  var arxiv_format="arxiv";
-  var arxiv_max_entries=0;       //show all articles
-  var arxiv_includeSummary=1;    //show abstracts (default is 0)
-  var arxiv_includeComments=0;   //do not show comments (default is 1)
 
   return (
     <>
@@ -72,11 +67,13 @@ export default function Home({ contractAddress }) {
             )
             }
           </h2>
+          <script type="text/javascript" src='../utils/getArxivFeed.js'>
+          </script>
+          <div id="arxivfeed"></div>
         </div>
-        <script type="text/javascript" src='../utils/getArxivFeed.js'>
-        </script>
-        <div id="arxivfeed"></div>
+       
       </section>
+
     </>
   )
 }

@@ -18,7 +18,7 @@
 // through which recipients can access the Corresponding Source.
 
 
-var arxiv_authorid='0000-0002-5101-8732';
+var arxiv_authorid='0000-0001-5137-828X';
 var arxiv_format="arxiv";
 var arxiv_max_entries=0;       //show all articles
 var arxiv_includeSummary=1;    //show abstracts (default is 0)
