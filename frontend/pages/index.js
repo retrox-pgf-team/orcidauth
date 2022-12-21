@@ -15,6 +15,10 @@ export default function Home() {
           <h4 className='text-center text-2xl mt-4'>
             Associate your academic credentials with a wallet address
           </h4>
+          <div className="mx-auto my-2">
+            <RequestCredential address={address} orcidJWT={orcidJWT} />
+
+          </div>
         </div>
       </section>
     </>
