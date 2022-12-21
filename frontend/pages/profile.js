@@ -5,12 +5,6 @@ import { useAccount } from 'wagmi';
 import { Navbar } from '../components/layout';
 import { orcidAbi } from '../utils/orcidAbi';
 
-var arxiv_authorid='0000-0002-5101-8732';
-var arxiv_format="arxiv";
-var arxiv_max_entries=0;       //show all articles
-var arxiv_includeSummary=1;    //show abstracts (default is 0)
-var arxiv_includeComments=0;   //do not show comments (default is 1)
-
 export default function Home({ contractAddress }) {
 
   const { address } = useAccount();
@@ -41,7 +35,6 @@ export default function Home({ contractAddress }) {
 
   }, [])
 
-
   return (
     <>
       <Navbar></Navbar>
@@ -67,13 +60,8 @@ export default function Home({ contractAddress }) {
             )
             }
           </h2>
-          <script type="text/javascript" src='../utils/getArxivFeed.js'>
-          </script>
-          <div id="arxivfeed"></div>
         </div>
-       
       </section>
-
     </>
   )
 }
