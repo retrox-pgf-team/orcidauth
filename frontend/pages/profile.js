@@ -4,12 +4,7 @@ import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import { Navbar } from '../components/layout';
 import { orcidAbi } from '../utils/orcidAbi';
-
-var arxiv_authorid='0000-0002-5101-8732';
-var arxiv_format="arxiv";
-var arxiv_max_entries=0;       //show all articles
-var arxiv_includeSummary=1;    //show abstracts (default is 0)
-var arxiv_includeComments=0;   //do not show comments (default is 1)
+import { useRouter } from "next/router";
 
 export default function Home({ contractAddress }) {
 
@@ -23,7 +18,6 @@ export default function Home({ contractAddress }) {
       'https://polygon-mumbai.g.alchemy.com/v2/Lvg6Sp2FS9yUK_PFYFvK2fSY87w3Iftg'
     );
     const contract = new ethers.Contract(contractAddress, orcidAbi, provider);
-
     const getOrcid = async () => {
 
       if (!address) {
@@ -41,6 +35,26 @@ export default function Home({ contractAddress }) {
 
   }, [])
 
+  const router = useRouter();
+  //the git_id is set manually here but needs to be automated in future
+  const git_id = "jan-o-e";
+  console.log("https://github.com/" + git_id + ".atom")
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (typeof git_id !== 'string') {
+      setError("error");
+    } else {
+      setError(null);
+      fetch("/api/github?git_id=" + git_id)
+        .then((response) => response.json())
+        .then((data) => setData(data))
+        .catch((error) => setError(error));
+    }
+  }, [git_id]);
+
+  console.log(data)
 
   return (
     <>
@@ -67,11 +81,10 @@ export default function Home({ contractAddress }) {
             )
             }
           </h2>
-          <script type="text/javascript" src='../utils/getArxivFeed.js'>
-          </script>
-          <div id="arxivfeed"></div>
-        </div>
-       
+       </div>
+      </section>
+      <section className="mt-20 flex justify-right">
+        <h3 className="text-4xl">{data.title._text}</h3>
       </section>
 
     </>

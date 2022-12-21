@@ -47,7 +47,7 @@ export default function Home() {
     <>
       <Navbar></Navbar>
       <section className="mt-20 flex justify-center">
-        <h2 className="text-4xl">{data.title._text}</h2>
+        <h3 className="text-4xl">{data.title._text}</h3>
       </section>
     </>
   );
