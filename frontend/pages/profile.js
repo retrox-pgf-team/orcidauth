@@ -53,8 +53,6 @@ export default function Home({ contractAddress }) {
     }
   }, [git_id]);
 
-  console.log(data)
-
   return (
     <>
       <Navbar></Navbar>
@@ -66,12 +64,12 @@ export default function Home({ contractAddress }) {
         </div>
         <div>
           <h4 className='text-center text-2xl mt-4'>
-            Associate your academic credentials with a wallet address
+            Web3 Credentials for Web2 Scientists.
           </h4>
           <h2 className='text-center text-2xl mt-4'>
             {(orcid) ? (
               <div className='hover:underline'>
-                <Link href={`https://orcid.org/${orcid}`} target="_blank">{orcid}</Link>
+                <Link href={`/profiles/${orcid}`} target="_blank">View Your Retrox Public Profile: {orcid}</Link>
               </div>
             ) : (
               <div className='hover:underline'>
