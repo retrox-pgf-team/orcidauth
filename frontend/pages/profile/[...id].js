@@ -33,6 +33,13 @@ const demoPublications = [
       "Mode entanglement in many-body quantum systems is an active area of research. It provides crucial insight into the suitability of many-body systems for quantum information processing tasks. Local super-selection rules must be taken into account when assessing the amount of physically accessible entanglement. This requires amending well-established entanglement measures by incorporating local parity and local particle number constraints. In this paper, we report on mode entanglement present in the analytically solvable system of N-Harmonium. To the knowledge of the authors, this is the first analytic study of the physically accessible mode and mode-mode entanglement of an interacting many-body system in a continuous state space. We find that super-selection rules dramatically reduce the amount of physically accessible entanglement, which vanishes entirely in some cases. Our results strongly suggest the need to re-evaluate intra and inter-mode entanglement in other fermionic and bosonic systems.",
     link: "https://arxiv.org/abs/2106.02459",
   },
+  {
+    title: "Mode Entanglement in Fermionic and Bosonic Harmonium",
+    authors: "Jan Ole Ernst, Felix Tennie",
+    summary:
+      "Mode entanglement in many-body quantum systems is an active area of research. It provides crucial insight into the suitability of many-body systems for quantum information processing tasks. Local super-selection rules must be taken into account when assessing the amount of physically accessible entanglement. This requires amending well-established entanglement measures by incorporating local parity and local particle number constraints. In this paper, we report on mode entanglement present in the analytically solvable system of N-Harmonium. To the knowledge of the authors, this is the first analytic study of the physically accessible mode and mode-mode entanglement of an interacting many-body system in a continuous state space. We find that super-selection rules dramatically reduce the amount of physically accessible entanglement, which vanishes entirely in some cases. Our results strongly suggest the need to re-evaluate intra and inter-mode entanglement in other fermionic and bosonic systems.",
+    link: "https://arxiv.org/abs/2106.02459",
+  },
 ];
 
 export default function Profile() {
