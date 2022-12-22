@@ -38,7 +38,6 @@ export default function Home({ contractAddress }) {
   const router = useRouter();
   //the git_id is set manually here but needs to be automated in future
   const git_id = "jan-o-e";
-  console.log("https://github.com/" + git_id + ".atom")
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -82,9 +81,6 @@ export default function Home({ contractAddress }) {
             }
           </h2>
        </div>
-      </section>
-      <section className="mt-20 flex justify-right">
-        <h3 className="text-4xl">{data.title._text}</h3>
       </section>
 
     </>

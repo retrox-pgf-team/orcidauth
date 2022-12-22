@@ -8,7 +8,7 @@ function Index({ issues }) {
       <section className='mt-20'>
         <div>
           <h2 className='text-center text-4xl font-bold'>
-            Issuances
+            Issued Credentials
           </h2>
         </div>
         <div className="flex flex-col justify-center">

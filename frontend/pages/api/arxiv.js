@@ -11,5 +11,8 @@ export default async function handler(req, res) {
   const arxivJson = JSON.parse(
     convert.xml2json(arxiv, { compact: true, spaces: 1 })
   );
+  if (!Array.isArray(arxivJson.feed.entry)) {
+    arxivJson.feed.entry = [arxivJson.feed.entry];
+  }
   res.status(200).json(arxivJson.feed);
 }
